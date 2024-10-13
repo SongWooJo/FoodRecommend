@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>yjs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'GmarketSansMedium';
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            /* 모바일 맞춤 */
+            font-size: 16px;
+        }
+        /* 이것도 */
+        @media only screen and (max-width: 600px) {
+            body{
+                font-size:14px;
+            }
+            .input-container{
+                width: 100%;
+                padding: 10px;
+            }
+        }
+        button {
+            padding: 1.5em 2em;
+            font-size: 12px;
+            background-color: #fff;
+            border: none;
+            border-radius: 45px;
+            cursor: pointer;
+        }
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: relative;
+            justify-content: center;
+            height: 60px;
+        }
+        .nav-left, .nav-center {
+            font-size: 24px;
+            position: absolute;
+        }
+        .nav-left {
+            left: 1vw;
+        }
+        .nav-center {
+            left: 45vw;
+            transform: translateX(-50%);
+        }
+        .nav-title {
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: white; 
+        } 
+        .nav-left a:hover, .nav-center a:hover {
+            text-decoration: underline;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 20px 20px;
+        }
+        .input-container {
+            transform: translateX(-6%);
+            display: flex;
+            white-space: nowrap;
+            width: 50vw;
+            height: 20vh;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 15vh;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .input-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .input {
+            width: 100%;
+            max-width: 220px;
+            height: 45px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1.5px solid lightgrey;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0px 0px 20px -18px;
+        }
+        .ai-button {
+            padding: 1.3em 3em;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 45px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+            font-family: 'GmarketSansMedium';
+        }
+        .ai-button:active {
+            color: #666;
+            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+        }
+        .button-center {
+            text-align: center;
+        }
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <form action="{{ url_for('main')}}" method="GET">
+                    <button type="submit" class="fas fa-home"></button>
+                </form>
+            </div>
+            <div class="nav-center">
+                <span class="nav-title">Cook</span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form action="{{ url_for('yjs_result') }}" method="post">
+            <div class="input-container">
+                <h2>재료를 입력하세요</h2>
+                <input type="text" placeholder="예: 토마토, 양파, 계란" name="select" class="input">
+            </div>
+            <div class ="button-center">
+            <button type="submit" class="ai-button">AI run</button>
+        </div>
+        </form>
+    </main>
+</body>
+</html>

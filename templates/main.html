@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            font-family: 'GmarketSansMedium';
+            margin: 0;
+            padding: 0;
+            height : 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        button {
+            padding: 1.5em 2em;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 45px;
+            cursor: pointer;
+        }
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: relative;
+            height: 60px;
+        }
+        .nav-left, .nav-center {
+            font-size: 24px;
+            position: absolute;
+        }
+        .nav-left {
+            left: 1vw;
+        }
+        .nav-center {
+            left: 45vw;
+            transform: translateX(-50%);
+        }
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+        .nav-left a, .nav-center a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .nav-left a:hover, .nav-center a:hover {
+            text-decoration: underline;
+        }
+        .main-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 100%;
+            font-size: 1.7vh;
+            padding: 0 5%;
+            box-sizing: border-box;
+            top: 20%;
+            white-space: nowrap;
+            animation: fadeInUp 1s;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            top: 34%;
+            animation: fadeInUp 1.5s;
+        }
+        .button-container button {
+            width: 60vw; /* 가로 60% */
+            height: 5vh; /* 세로 5% */
+            display: flex;
+            margin: 5vw;
+            padding: 70px 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 40px;
+            background-color: #fafafa;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            white-space: nowrap;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            cursor: pointer;
+            text-align: center;
+            font-size: 5vw;
+            font-family: 'GmarketSansMedium';
+        }
+        .button-container button:hover,.button-container button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        .button-container button:hover {
+            transform: translateY(-1px);
+        }
+        .button-container button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translate3d(-50%, 70%,0);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%);
+            }
+        }
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <form action="{{ url_for('main')}}" method="GET">
+                    <button type="submit" class="fas fa-home">
+                    </button>
+                </form> <!-- 메인 아이콘 -->
+            </div>
+            <div class="nav-center">
+                <span class="nav-title">Cook</span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="main-center">
+        <h1>어떤것으로 입력하시겠어요?</h1>
+        </div>
+        <div class="main-center">
+        <br><br>
+        <h5>입력한 재료나 음식 이름을 기반으로 관련된 메뉴를 추천해주는 AI입니다.</h4>
+        </div>
+        <div class="button-container">
+            <form action="{{ url_for('jsw')}}">
+                <button type="submit" class="btn">좋아하는 음식으로<br>메뉴 추천 </button>
+            </form>
+            <form action="{{ url_for('yjs')}}">
+                <button type="submit" class="btn">냉장고 속 재료로<br>메뉴 추천</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

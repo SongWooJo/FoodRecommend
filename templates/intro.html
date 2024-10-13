@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cosi Azure", sans-serif;
+  text-rendering: optimizeLegibility;
+  color: white;
+  background-color: #151515;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.intro {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  z-index: 5;
+}
+.intro__title {
+  color: white;
+  max-width: 100%;
+  text-align: center;
+  mix-blend-mode: difference;
+  z-index: 2;
+  transform: translateY(40px), translateX(-50%);
+  white-space: nowrap;
+}
+.intro__background {
+  position: absolute;
+  top: 0;
+  background-color: black;
+  width: 50%;
+  height: 100%;
+  transform: scaleX(0);
+}
+.intro__background--left {
+  left: 0;
+  transform-origin: left center;
+}
+.intro__background--right {
+  left: 50%;
+  transform-origin: right center;
+}
+
+  </style>
+</head>
+<body>
+    <section class="intro">
+        <h2 class="intro__title hidden">메뉴가 고민될 땐?<br>Cook</h2>
+        <div class="intro__background intro__background--left"></div>
+        <div class="intro__background intro__background--right"></div>
+    </section>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
+</body>
+<script>
+    const animationOptions = {
+  ease: 'expo.inOut'
+};
+
+const introAnimation = () => {
+  const tl = gsap.timeline({
+    defaults: {
+      ease: animationOptions.ease,
+      duration: 1
+    }
+  });
+
+  tl.to('.intro__title', {
+    duration: 1.5,
+    y: -80,
+    autoAlpha: 1,
+    delay: 0.5
+  })
+  .to('.intro__background--left, .intro__background--right', {
+    scaleX: 1
+  })
+  .to('.intro__background--left, .intro__background--right', {
+    scaleY: 0,
+    transformOrigin: 'top center'
+  })
+  .to('.intro__title', {
+    duration: 1.5,
+    y: -60,
+    autoAlpha: 0
+  }, '-=0.6')
+  .to('.intro', {
+    y: '-100%',
+    onComplete: () => {
+      window.location.href = 'main';  // Redirect to main.html after animation
+    }
+  }, '-=0.5');
+
+  return tl;
+};
+
+gsap.timeline().add(introAnimation());
+    </script>
+
+</html>
